@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+
+        <a href="index.html" class="logo">
+            Reynalyn <span>Morales</span>
+        </a>
+
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="project.html">Projects</a>
+            <a href="quizzes.html">Quizzes</a>
+        </nav>
+
+        <button class="gradient-btn"><a href="contact.html">Contact Me</a></button>
+    </header>
+
+        <section class="projects" id="project">
+
+            <h2 class="heading">My <span>Projects</span></h2>
+
+            <div class="project-box">
+
+                <div class="project-card">
+                    <img src="projects/sstudio/1.jpg" alt="">
+
+                    <h3>Silanganan Dance Studio</h3>
+                    <p><span>Silanganan Dance Studio</span> is a premier dance institution established in 2023. 
+                        Dedicated to excellence in performance and training, the studio provides a 
+                        dynamic environment for dancers of all levels to grow, express, and thrive. 
+                        Join our community by logging in or registering to begin your journey in dance 
+                        with experienced mentors and a supportive creative space.</p>
+                        <div class="btn">Review Project</div>
+                </div>
+
+
+
+                <div class="project-card">
+                    <img src="projects/cn/1.png" alt="">
+
+                    <h3>Claudy Nails</h3>
+                    <p><span>Claudy Nails</span> is a premium nail care 
+                        studio dedicated to providing personalized, high-quality nail services 
+                        in a stylish and relaxing environment. From classic manicures to intricate 
+                        nail art, each service is delivered with passion, precision, and attention 
+                        to detail. Book your appointment today and experience beauty at your fingertips.</p>
+                        <div class="btn">Review Project</div>
+                </div>
+
+
+                <div class="project-card">
+                    <img src="projects/IT3A/1.jpg" alt="">
+
+                    <h3>The Notebook</h3>
+                    <p><span>The Notebook</span> is a creative space for 
+                        design thinkers, offering insightful stories and resources that guide 
+                        readers through the design process—from inspiration and ideation to 
+                        research and execution. Perfect for students, professionals, and creatives, 
+                        t fosters deeper understanding and appreciation for purposeful, user-centered design.</p>
+                        <div class="btn">Review Project</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="popup" id="popup">
+       <span class="close" id="closePopup">&times;</span>     
+            <div class="popup-content">
+                <img src="" id="popup-img" alt="Slideshow Image">
+                <div class="popup-controls">
+                    <button id="prev">&#10094;</button>
+                    <button id="next">&#10095;</button>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+
+            <div class="social-icons">
+                <a href="https://github.com/MORALES-REI">
+                    <i class='bx bxl-github' ></i>
+                </a>
+    
+                <a href="https://www.instagram.com/reeiiiu_/">
+                    <i class='bx bxl-instagram' ></i>
+                </a>
+    
+                <a href="https://www.facebook.com/reinalyn.belen">
+                    <i class='bx bxl-facebook-circle'></i>
+                </a>
+            </div>    
+
+        <ul class="list">
+            <li>
+                <a href="contact.html">FAQ</a>
+            </li>
+
+            <li>
+                <a href="about.html">About Me</a>
+            </li>
+
+            <li>
+                <a href="project.html">Projects</a>
+            </li>
+
+            <li>
+                <a href="quizzes.html">Quizzes</a>
+            </li>
+        </ul>
+
+        <p class="copyright">
+            Reynalyn | All Right Reserved
+        </p>
+    </footer>
+    
+
+    <script>
+        const popup = document.getElementById("popup");
+        const popupImg = document.getElementById("popup-img");
+        const closeBtn = document.querySelector(".close");
+        const prevBtn = document.getElementById("prev");
+        const nextBtn = document.getElementById("next");
+        const buttons = document.querySelectorAll(".btn");
+        
+        const slides = {
+            0: ["projects/sstudio/1.jpg", "projects/sstudio/2.jpg", "projects/sstudio/3.jpg", "projects/sstudio/4.jpg", "projects/sstudio/5.jpg",
+        "projects/sstudio/6.jpg", "projects/sstudio/7.jpg", "projects/sstudio/8.jpg", "projects/sstudio/9.jpg", "projects/sstudio/10.jpg",
+        "projects/sstudio/11.jpg", "projects/sstudio/12.jpg", "projects/sstudio/13.jpg", "projects/sstudio/14.jpg", "projects/sstudio/15.jpg",
+        "projects/sstudio/16.jpg", "projects/sstudio/17.jpg", "projects/sstudio/18.jpg", "projects/sstudio/19.jpg", "projects/sstudio/20.jpg",
+        "projects/sstudio/21.jpg", "projects/sstudio/22.jpg", "projects/sstudio/23.jpg", "projects/sstudio/24.jpg"],
+            1: ["projects/cn/1.png", "projects/cn/2.png", "projects/cn/3.png"],
+            2: ["projects/IT3A/1.jpg", "projects/IT3A/2.jpg", "projects/IT3A/3.jpg"]
+        };
+        
+        let currentProject = 0;
+        let currentSlide = 0;
+        
+        function changeSlide(newSrc) {
+            popupImg.classList.remove("show"); // Start fade out
+            setTimeout(() => {
+                popupImg.src = newSrc;
+                popupImg.classList.add("show"); // Fade in
+            }, 200);
+        }
+        
+        buttons.forEach((btn, index) => {
+            btn.addEventListener("click", () => {
+                currentProject = index;
+                currentSlide = 0;
+                changeSlide(slides[currentProject][currentSlide]);
+                popup.style.display = "flex";
+            });
+        });
+        
+        closeBtn.onclick = () => {
+            popup.style.display = "none";
+        };
+        
+        nextBtn.onclick = () => {
+            currentSlide = (currentSlide + 1) % slides[currentProject].length;
+            changeSlide(slides[currentProject][currentSlide]);
+        };
+        
+        prevBtn.onclick = () => {
+            currentSlide = (currentSlide - 1 + slides[currentProject].length) % slides[currentProject].length;
+            changeSlide(slides[currentProject][currentSlide]);
+        };
+        </script>  
+        
+        <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzes - Web Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <header class="header">
+
+        <a href="index.html" class="logo">
+            Reynalyn <span>Morales</span>
+        </a>
+
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="project.html">Projects</a>
+            <a href="quizzes.html">Quizzes</a>
+        </nav>
+
+        <button class="gradient-btn"><a href="contact.html">Contact Me</a></button>
+    </header>
+
+
+    <section class="quizzes" id="quizzes">
+
+        <h2 class="heading">Quizzes</h2>
+
+        <div class="services-container">
+            <div class="service-box" onclick="openModal(0)">
+                <div class="service-info">
+                    <img src="pic/1.jpg" alt="">
+                </div>
+            </div>
+
+            <div class="service-box" onclick="openModal(1)">
+                <div class="service-info">
+                    <img src="pic/2.jpg" alt="">
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info" onclick="openModal(2)">
+                    <img src="pic/3.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeModal()">&times;</span>
+          <div id="modalSlidesContainer"></div>
+          <div class="nav-buttons">
+            <button onclick="prevSlide()">❮ Prev</button>
+            <button onclick="nextSlide()">Next ❯</button>
+          </div>
+        </div>
+      </div>
+
+
+      <footer class="footer">
+
+        <div class="social-icons">
+            <a href="https://github.com/MORALES-REI">
+                <i class='bx bxl-github' ></i>
+            </a>
+
+            <a href="https://www.instagram.com/reeiiiu_/">
+                <i class='bx bxl-instagram' ></i>
+            </a>
+
+            <a href="https://www.facebook.com/reinalyn.belen">
+                <i class='bx bxl-facebook-circle'></i>
+            </a>
+        </div>
+
+        <ul class="list">
+            <li>
+                <a href="contact.html">FAQ</a>
+            </li>
+
+            <li>
+                <a href="about.html">About Me</a>
+            </li>
+
+            <li>
+                <a href="project.html">Projects</a>
+            </li>
+
+            <li>
+                <a href="quizzes.html">Quizzes</a>
+            </li>
+        </ul>
+
+        <p class="copyright">
+            Reynalyn | All Right Reserved
+        </p>
+    </footer>
+    
+
+    <script>
+        // Slide data: each quiz has multiple slides (array of arrays)
+        const quizSlides = [
+      [
+        "<img src='quizzes/pretest 1.jpg' alt='Score 1' class='slide-img'>",
+        "<img src='quizzes/pretest 2.jpg' alt='Score 2' class='slide-img'>",
+        "<img src='quizzes/pretest 3.jpg' alt='Score 2' class='slide-img'>",
+        "<img src='quizzes/pretest 4.jpg' alt='Score 2' class='slide-img'>",
+        "<img src='quizzes/pretest 5.jpg' alt='Score 2' class='slide-img'>"
+      ],
+      [
+        "<img src='quizzes/posttest 1.jpg' alt='Score 1' class='slide-img'>",
+        "<img src='quizzes/posttest 2.jpg' alt='Score 2' class='slide-img'>",
+        "<img src='quizzes/posttest 3.jpg' alt='Score 2' class='slide-img'>",
+        "<img src='quizzes/posttest 4.jpg' alt='Score 2' class='slide-img'>",
+        "<img src='quizzes/posttest 5.jpg' alt='Score 2' class='slide-img'>"
+      ],
+      [
+        
+      ]
+    ];
+
+let currentQuiz = 0;
+    let currentSlide = 0;
+
+    function openModal(quizIndex) {
+      currentQuiz = quizIndex;
+      currentSlide = 0;
+      showSlide();
+      document.getElementById("quizModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("quizModal").style.display = "none";
+    }
+
+    function showSlide() {
+      const slideHTML = quizSlides[currentQuiz][currentSlide];
+      document.getElementById("modalSlidesContainer").innerHTML = slideHTML;
+    }
+
+    function nextSlide() {
+      if (currentSlide < quizSlides[currentQuiz].length - 1) {
+        currentSlide++;
+        showSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide();
+      }
+    }
+
+    window.onclick = function (event) {
+      const modal = document.getElementById("quizModal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
